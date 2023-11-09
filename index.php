@@ -79,7 +79,7 @@
   <div id="modal">
     <div id="modal-form">
       <h2>Edit Form</h2>
-      <form method="POST">
+      <form method="POST" id="updateModal">
         <table cellpadding="10px" width="100%" id="edit-form">
           <tr>
             <td width='90px'>Name</td>
@@ -103,7 +103,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><button type="button" id='edit-submit'>Save</button></td>
+            <td><button type="button" id='edit-submit' onclick="updateData()">Save</button></td>
           </tr>
         </table>
       </form>

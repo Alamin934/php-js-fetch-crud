@@ -115,14 +115,12 @@ function submitData() {
 	}
 }
 
+
 // Open Update Modal Box and show Student record in it.
-
-
-// Update student record
 function editRecord(id){
 	var editModal = document.getElementById("modal");
 	editModal.style.display = "block";
-
+	
 	fetch(`php/fetch-edit.php?editId=${id}`)
 	.then((response)=>response.json())
 	.then((data)=>{
@@ -133,7 +131,7 @@ function editRecord(id){
 			document.getElementById('edit-name').value=editInfo['sname'];
 			document.getElementById('edit-address').value=editInfo['saddress'];
 			document.getElementById('edit-Phone').value=editInfo['sphone'];
-
+			
 			for(var editC in data.class){
 				var editClass = data.class[editC];
 				if(editClass['cid'] == editInfo['sclass']){
@@ -149,6 +147,53 @@ function editRecord(id){
 	.catch((error)=>{
 		showMessage("error", "Data update failed");
 	})
+}
+
+// Update student record
+function updateData(){
+	var uId = document.getElementById('edit-id').value;
+	var uName = document.getElementById('edit-name').value;
+	var uClass = document.getElementById('edit-class').value;
+	var uAddress = document.getElementById('edit-address').value;
+	var uPhone = document.getElementById('edit-Phone').value;
+	
+	if(uId === '' || uName === '' || uClass === '' || uAddress === '' || uPhone === ''){
+		alert("All fields must be filled");
+		return false;
+	}else{
+		var updateFormData = {
+			id:uId,
+			name:uName,
+			class:uClass,
+			address:uAddress,
+			phone:uPhone
+		};
+		var updateJsonData = JSON.stringify(updateFormData);
+
+		fetch("php/fetch-update.php",{
+			method: "PUT",
+			body: updateJsonData,
+			headers:{
+				'Content-type':'application/json',
+			},
+		})
+		.then((response) => response.json())
+		.then((result)=>{
+			if(result.insert == 'success'){
+				loadTable();
+				hideModal();
+				document.getElementById("updateModal").reset();
+				showMessage("success", "Data Updated Successfully");
+			}else{
+				hideModal();
+				showMessage("error", "Data Can't Update");
+			}
+		})
+		.catch((error)=>{
+			hideModal();
+			showMessage("error", "Data Update failed");
+		})
+	}
 }
 
 // Delete student record
