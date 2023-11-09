@@ -19,7 +19,7 @@
     
     <div id="table-data">
       <h3>All Records</h3>
-      <button class="add_new">Add New</button>
+      <button class="add_new" onclick="addNewModal();">Add New</button>
       <table border="1" width="100%" cellspacing="0" cellpadding="10px">
         <thead>
           <tr>
@@ -70,7 +70,7 @@
           </tr>
         </table>
       </form>
-      <div id="close-btn">X</div>
+      <div id="close-btn" onclick="hideModal()">X</div>
     </div>
   </div>
 

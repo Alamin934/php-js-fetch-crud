@@ -37,10 +37,35 @@ function loadTable() {
 loadTable();
 
 // Open Add new student Modal Box 
+function addNewModal(){
+	var addModal = document.getElementById("addModal");
+	addModal.style.display = "block";
 
+	fetch("php/fetch-class-field.php")	
+	.then((response)=>response.json())
+	.then((data)=>{
+		var select = document.getElementById("classlist");
+		if(data['empty']){
+			select.innerHTML = '<option>No Class Found</option>';
+		}else{
+			var option = '<option value="0" disabled selected>Select Class</option>';
+			for(var c in data){
+				var classes = data[c];
+				option += `<option value="${classes.cid}">${classes.cname}</option>`;
+			}
+			select.innerHTML = option;
+		}
+	})
+	.catch((error)=>{
+		showMessage('error', "Can't fetch Class List.");
+	})
+}
 
 // Hide Modal Box / Popup Box
-
+function hideModal(){
+	var addModal = document.getElementById("addModal");
+	addModal.style.display = "none";
+}
 // Add Student Record
 
 
