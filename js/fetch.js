@@ -5,7 +5,7 @@ function loadTable() {
 	.then((data)=>{
 		var tbody = document.getElementById("tbody");
 		if(data['empty']){
-			tbody.innerHTML = `<tr><td colspan='6' align='center'><h3>Record Not Found</h3></td></tr>`;
+			tbody.innerHTML = `<tr><td colspan='7' align='center'><h3>Record Not Found</h3></td></tr>`;
 		}else{
 			var tr = '';
 			var id=1;
@@ -220,7 +220,48 @@ function deleteRecord(id) {
 }
 
 // Search student record
-
+function load_search(){
+	var searchValue = document.getElementById("search").value;
+	if(searchValue === ''){
+		loadTable();
+		return false;
+	}else{
+		fetch("php/fetch-search.php?search="+searchValue)	
+		.then((response)=>response.json())
+		.then((data)=>{
+			var tbody = document.getElementById("tbody");
+			if(data['empty']){
+				tbody.innerHTML = `<tr><td colspan='7' align='center'><h3>Record Not Found</h3></td></tr>`;
+			}else{
+				var tr = '';
+				var id=1;
+				for(var i in data){
+					var stdInfo = data[i];
+					tr += `<tr>
+						<td align='center'>${id}</td>
+						<td>${stdInfo.sname}</td>
+						<td>${stdInfo.cname}</td>
+						<td>${stdInfo.saddress}</td>
+						<td>${stdInfo.sphone}</td>
+						<td align='center'>
+							<button class="edit-btn" onclick="editRecord(${stdInfo.sid})">Edit</button>
+						</td>
+						<td align='center'>
+							<button class="delete-btn" onclick="deleteRecord(${stdInfo.sid})">Delete</button>
+						</td>
+					</tr>`;
+					id++;
+				}
+				tbody.innerHTML = tr;
+			}
+		})
+		.catch((error)=>{
+			if(error){
+				showMessage('error', "Can't fetch data.");
+			}
+		})
+	}
+}
 
 //show error / success message
 function showMessage(type, message) {

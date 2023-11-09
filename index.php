@@ -13,7 +13,7 @@
       <h2>PHP & JavaScript Fetch CRUD</h2>
       <div id="search-bar">
         <label>Search :</label>
-        <input type="text" id="search" autocomplete="off">
+        <input type="text" id="search" onkeyup="load_search()" autocomplete="off">
       </div>
     </div>
     
