@@ -13,20 +13,20 @@
       <h2>PHP & JavaScript Fetch CRUD</h2>
       <div id="search-bar">
         <label>Search :</label>
-        <input type="text" id="search" onkeyup="load_search()" autocomplete="off">
+        <input type="text" id="search" autocomplete="off">
       </div>
     </div>
     
     <div id="table-data">
       <h3>All Records</h3>
-      <button class="add_new" onclick="addNewModal()">Add New</button>
+      <button class="add_new">Add New</button>
       <table border="1" width="100%" cellspacing="0" cellpadding="10px">
         <thead>
           <tr>
             <th width="60px">Id</th>
             <th>Name</th>
             <th>Class</th>
-            <th>City</th>
+            <th>Phone</th>
             <th width="90px">Edit</th>
             <th width="90px">Delete</th>
           </tr>
@@ -61,16 +61,16 @@
             </td>
           </tr>
           <tr>
-            <td width='90px'>City</td>
-            <td><input type='text' id='city' ></td>
+            <td width='90px'>Phone</td>
+            <td><input type='text' id='Phone' ></td>
           </tr>
           <tr>
             <td></td>
-            <td><button type="button" onclick='submit_data()' id='new-submit'>Save</button></td>
+            <td><button type="button" id='new-submit'>Save</button></td>
           </tr>
         </table>
       </form>
-      <div id="close-btn" onclick="hide_modal()">X</div>
+      <div id="close-btn">X</div>
     </div>
   </div>
 
@@ -97,16 +97,16 @@
             </td>
           </tr>
           <tr>
-            <td width='90px'>City</td>
-            <td><input type='text' id='edit-city' autocomplete="off"></td>
+            <td width='90px'>Phone</td>
+            <td><input type='text' id='edit-Phone' autocomplete="off"></td>
           </tr>
           <tr>
             <td></td>
-            <td><button type="button" onclick='modify_data()' id='edit-submit'>Save</button></td>
+            <td><button type="button" id='edit-submit'>Save</button></td>
           </tr>
         </table>
       </form>
-      <div id="close-btn" onclick="hide_modal()">X</div>
+      <div id="close-btn">X</div>
     </div>
   </div>
   
