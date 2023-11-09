@@ -8,10 +8,11 @@ function loadTable() {
 			tbody.innerHTML = `<tr><td colspan='6' align='center'><h3>Record Not Found</h3></td></tr>`;
 		}else{
 			var tr = '';
+			var id=1;
 			for(var i in data){
 				var stdInfo = data[i];
 				tr += `<tr>
-					<td align='center'>${stdInfo.sid}</td>
+					<td align='center'>${id}</td>
 					<td>${stdInfo.sname}</td>
 					<td>${stdInfo.cname}</td>
 					<td>${stdInfo.saddress}</td>
@@ -23,6 +24,7 @@ function loadTable() {
 						<button class="delete-btn" onclick="deleteRecord(${stdInfo.sid})">Delete</button>
 					</td>
 				</tr>`;
+				id++;
 			}
 			tbody.innerHTML = tr;
 		}
@@ -179,7 +181,7 @@ function updateData(){
 		})
 		.then((response) => response.json())
 		.then((result)=>{
-			if(result.insert == 'success'){
+			if(result.update == 'success'){
 				loadTable();
 				hideModal();
 				document.getElementById("updateModal").reset();
@@ -197,7 +199,25 @@ function updateData(){
 }
 
 // Delete student record
-
+function deleteRecord(id) {
+	if(confirm("Are you sure want to Delete this")){
+		fetch("php/fetch-delete.php?delId="+id,{
+			method: "DELETE"
+		})
+		.then((res) => res.json())
+		.then((data) => {
+			if(data.delete == 'success'){
+				loadTable();
+				showMessage("success", "Data Deleted Successfully");
+			}else{
+				showMessage("error", "Data Can't Delete");
+			}
+		})
+		.catch((error) => {
+			showMessage("error", "Data Delete failed");
+		})
+	}
+}
 
 // Search student record
 

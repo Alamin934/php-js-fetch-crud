@@ -15,8 +15,8 @@ if(isset($decode["id"]) || isset($decode["name"]) || isset($decode["address"]) |
     $sql = "UPDATE students SET sname='{$name}', saddress='{$address}', sclass={$class}, sphone={$phone} WHERE sid = {$id}";
 
     if(mysqli_query($conn, $sql)){
-        echo json_encode(array('insert'=>'success'));
+        echo json_encode(array('update'=>'success'));
     }else{
-        echo json_encode(array('insert'=>'error'));
+        echo json_encode(array('update'=>'error'));
     }
 }

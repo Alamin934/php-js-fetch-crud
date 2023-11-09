@@ -23,7 +23,7 @@
       <table border="1" width="100%" cellspacing="0" cellpadding="10px">
         <thead>
           <tr>
-            <th width="60px">Id</th>
+            <th width="60px">Sl.No</th>
             <th>Name</th>
             <th>Class</th>
             <th>Address</th>
