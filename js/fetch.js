@@ -66,6 +66,9 @@ function addNewModal(){
 function hideModal(){
 	var addModal = document.getElementById("addModal");
 	addModal.style.display = "none";
+
+	var editModal = document.getElementById("modal");
+	editModal.style.display = "none";
 }
 // Add Student Record
 function submitData() {
@@ -116,7 +119,37 @@ function submitData() {
 
 
 // Update student record
+function editRecord(id){
+	var editModal = document.getElementById("modal");
+	editModal.style.display = "block";
 
+	fetch(`php/fetch-edit.php?editId=${id}`)
+	.then((response)=>response.json())
+	.then((data)=>{
+		var cOption = '';
+		for(var e in data.response){
+			var editInfo = data.response[e];
+			document.getElementById('edit-id').value=editInfo['sid'];
+			document.getElementById('edit-name').value=editInfo['sname'];
+			document.getElementById('edit-address').value=editInfo['saddress'];
+			document.getElementById('edit-Phone').value=editInfo['sphone'];
+
+			for(var editC in data.class){
+				var editClass = data.class[editC];
+				if(editClass['cid'] == editInfo['sclass']){
+					var selected = 'selected';
+				}else{
+					var selected = '';
+				}
+				cOption +=`<option ${selected} value='${editClass['cid']}'>${editClass['cname']}</option>`;
+			}
+			document.getElementById('edit-class').innerHTML=cOption;
+		}
+	})
+	.catch((error)=>{
+		showMessage("error", "Data update failed");
+	})
+}
 
 // Delete student record
 

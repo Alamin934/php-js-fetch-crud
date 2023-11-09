@@ -82,14 +82,14 @@
       <form method="POST">
         <table cellpadding="10px" width="100%" id="edit-form">
           <tr>
-            <td width='90px'>First Name</td>
-            <td><input type='text' id='edit-fname' autocomplete="off">
+            <td width='90px'>Name</td>
+            <td><input type='text' id='edit-name' autocomplete="off">
                 <input type='text' id='edit-id' hidden>
             </td>
           </tr>
           <tr>
-            <td width='90px'>Last Name</td>
-            <td><input type='text' id='edit-lname' autocomplete="off"></td>
+            <td width='90px'>Address</td>
+            <td><input type='text' id='edit-address' autocomplete="off"></td>
           </tr>
           <tr>
             <td width='90px'>Class</td>
@@ -107,7 +107,7 @@
           </tr>
         </table>
       </form>
-      <div id="close-btn">X</div>
+      <div id="close-btn" onclick="hideModal()">X</div>
     </div>
   </div>
   
