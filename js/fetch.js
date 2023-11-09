@@ -14,6 +14,7 @@ function loadTable() {
 					<td align='center'>${stdInfo.sid}</td>
 					<td>${stdInfo.sname}</td>
 					<td>${stdInfo.cname}</td>
+					<td>${stdInfo.saddress}</td>
 					<td>${stdInfo.sphone}</td>
 					<td align='center'>
 						<button class="edit-btn" onclick="editRecord(${stdInfo.sid})">Edit</button>
@@ -67,7 +68,49 @@ function hideModal(){
 	addModal.style.display = "none";
 }
 // Add Student Record
+function submitData() {
+	var name = document.getElementById('name').value;
+	var address = document.getElementById('address').value;
+	var sclass = document.getElementById('classlist').value;
+	var phone = document.getElementById('phone').value;
 
+	if(name === '' || address === '' || sclass === '' || phone === ''){
+		alert("All fields must be filled");
+		return false;
+	}else{
+		var formData = {
+			name:name,
+			address:address,
+			class:sclass,
+			phone:phone
+		};
+		var jsonData = JSON.stringify(formData);
+
+		fetch("php/fetch-insert.php",{
+			method: "POST",
+			body: jsonData,
+			headers:{
+				'Content-type':'application/json',
+			},
+		})
+		.then((response) => response.json())
+		.then((result)=>{
+			if(result.insert == 'success'){
+				loadTable();
+				hideModal();
+				document.getElementById("addModal-form").reset();
+				showMessage("success", "Data Inserted Successfully");
+			}else{
+				hideModal();
+				showMessage("error", "Data Can't inserted");
+			}
+		})
+		.catch((error)=>{
+			hideModal();
+			showMessage("error", "Data insert failed");
+		})
+	}
+}
 
 // Open Update Modal Box and show Student record in it.
 

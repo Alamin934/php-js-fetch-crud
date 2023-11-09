@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 
-$sql = "SELECT students.sid,students.sname, students.sphone,student_class.cname FROM students LEFT JOIN student_class ON students.sclass = student_class.cid";
+$sql = "SELECT students.sid,students.sname,students.saddress, students.sphone,student_class.cname FROM students LEFT JOIN student_class ON students.sclass = student_class.cid";
 $query = mysqli_query($conn, $sql) or die("Query Failed");
 
 if(mysqli_num_rows($query) > 0){

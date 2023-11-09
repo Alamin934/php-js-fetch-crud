@@ -26,6 +26,7 @@
             <th width="60px">Id</th>
             <th>Name</th>
             <th>Class</th>
+            <th>Address</th>
             <th>Phone</th>
             <th width="90px">Edit</th>
             <th width="90px">Delete</th>
@@ -47,12 +48,12 @@
       <form method="POST" id="addModal-form">
         <table cellpadding="10px" width="100%" id="add-form">
           <tr>
-            <td width='90px'>First Name</td>
-            <td><input type='text' id='fname'></td>
+            <td width='90px'>Name</td>
+            <td><input type='text' id='name'></td>
           </tr>
           <tr>
-            <td width='90px'>Last Name</td>
-            <td><input type='text' id='lname' ></td>
+            <td width='90px'>Address</td>
+            <td><input type='text' id='address' ></td>
           </tr>
           <tr>
             <td width='90px'>Class</td>
@@ -62,11 +63,11 @@
           </tr>
           <tr>
             <td width='90px'>Phone</td>
-            <td><input type='text' id='Phone' ></td>
+            <td><input type='text' id='phone' ></td>
           </tr>
           <tr>
             <td></td>
-            <td><button type="button" id='new-submit'>Save</button></td>
+            <td><button type="button" onclick="submitData()" id='new-submit'>Save</button></td>
           </tr>
         </table>
       </form>
